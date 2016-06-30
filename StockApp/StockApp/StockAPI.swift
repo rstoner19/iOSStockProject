@@ -31,8 +31,16 @@ class API {
             if let data = data {
                 do {
                     if let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? [String : AnyObject] {
-                        if let query = json["query"], let results = query["results"] {
-                            
+                        if let query = json["query"] as? [String : AnyObject], results = query["results"] as? [String : AnyObject], let quote = results["quote"] as? [AnyObject] {
+                            var quotes = [Quote]()
+                            for quoteJSON in quote {
+                                print(quoteJSON)
+                                if let quote = Quote(json: quoteJSON) {
+                                    quotes.append(quote)
+                                }
+                                
+                            }
+                            print(quotes)
                         }
                     }
                 } catch {}
