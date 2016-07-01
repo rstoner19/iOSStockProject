@@ -15,17 +15,19 @@ class Quote {
     let lastPrice: Double?
     let lastTradeTime: String
     let dollarChange: Double?
-    let percentChange: String
+    let percentChangeString: String
+    let percentChangeDouble: Double?
 
     init?(json: AnyObject) {
         if let company = json["Name"] as? String, symbol = json["Symbol"] as? String, lastPrice = json["LastTradePriceOnly"] as? String, lastTradeTime = json["LastTradeTime"] as? String, dollarChange = json["Change"] as? String, percentChange = json["ChangeinPercent"] as? String {
             
             self.company = company
             self.symbol = symbol
-            self.lastPrice = Double(lastPrice)
+            self.lastPrice = round(Double(lastPrice)!*100)/100
             self.lastTradeTime = lastTradeTime
-            self.dollarChange = Double(dollarChange)
-            self.percentChange = percentChange
+            self.dollarChange = round(Double(dollarChange)! * 100)/100
+            self.percentChangeString = percentChange
+            self.percentChangeDouble = Double(self.dollarChange! / self.lastPrice!)
         
         } else {
             return nil

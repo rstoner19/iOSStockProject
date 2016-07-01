@@ -8,24 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		048B27FF1D25AFE000103E75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B27FE1D25AFE000103E75 /* AppDelegate.swift */; };
-		048B28011D25AFE000103E75 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B28001D25AFE000103E75 /* ViewController.swift */; };
+		048B28011D25AFE000103E75 /* StocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B28001D25AFE000103E75 /* StocksViewController.swift */; };
 		048B28041D25AFE000103E75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048B28021D25AFE000103E75 /* Main.storyboard */; };
 		048B28061D25AFE000103E75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 048B28051D25AFE000103E75 /* Assets.xcassets */; };
 		048B28091D25AFE000103E75 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048B28071D25AFE000103E75 /* LaunchScreen.storyboard */; };
 		048B28141D25B08C00103E75 /* StockAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B28131D25B08C00103E75 /* StockAPI.swift */; };
 		048B28171D25D28100103E75 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B28161D25D28000103E75 /* Quote.swift */; };
+		048B281A1D26D35200103E75 /* StockInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 048B28191D26D35200103E75 /* StockInfoCell.xib */; };
+		048B281C1D26D62600103E75 /* StockInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B281B1D26D62600103E75 /* StockInfoCell.swift */; };
+		048B281E1D26D7A900103E75 /* Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B281D1D26D7A900103E75 /* Setup.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		048B27FB1D25AFE000103E75 /* StockApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		048B27FE1D25AFE000103E75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		048B28001D25AFE000103E75 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		048B28001D25AFE000103E75 /* StocksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksViewController.swift; sourceTree = "<group>"; };
 		048B28031D25AFE000103E75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		048B28051D25AFE000103E75 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		048B28081D25AFE000103E75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		048B280A1D25AFE000103E75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		048B28131D25B08C00103E75 /* StockAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockAPI.swift; sourceTree = "<group>"; };
 		048B28161D25D28000103E75 /* Quote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
+		048B28191D26D35200103E75 /* StockInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StockInfoCell.xib; sourceTree = "<group>"; };
+		048B281B1D26D62600103E75 /* StockInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockInfoCell.swift; sourceTree = "<group>"; };
+		048B281D1D26D7A900103E75 /* Setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				048B28021D25AFE000103E75 /* Main.storyboard */,
+				048B28191D26D35200103E75 /* StockInfoCell.xib */,
 				048B28051D25AFE000103E75 /* Assets.xcassets */,
 				048B28071D25AFE000103E75 /* LaunchScreen.storyboard */,
 			);
@@ -80,7 +87,8 @@
 		048B28111D25B04500103E75 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				048B28001D25AFE000103E75 /* ViewController.swift */,
+				048B281B1D26D62600103E75 /* StockInfoCell.swift */,
+				048B28001D25AFE000103E75 /* StocksViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -105,6 +113,7 @@
 		048B28181D25D28400103E75 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				048B281D1D26D7A900103E75 /* Setup.swift */,
 				048B28161D25D28000103E75 /* Quote.swift */,
 			);
 			name = Model;
@@ -170,6 +179,7 @@
 			files = (
 				048B28091D25AFE000103E75 /* LaunchScreen.storyboard in Resources */,
 				048B28061D25AFE000103E75 /* Assets.xcassets in Resources */,
+				048B281A1D26D35200103E75 /* StockInfoCell.xib in Resources */,
 				048B28041D25AFE000103E75 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -182,8 +192,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				048B28171D25D28100103E75 /* Quote.swift in Sources */,
+				048B281E1D26D7A900103E75 /* Setup.swift in Sources */,
 				048B28141D25B08C00103E75 /* StockAPI.swift in Sources */,
-				048B28011D25AFE000103E75 /* ViewController.swift in Sources */,
+				048B28011D25AFE000103E75 /* StocksViewController.swift in Sources */,
+				048B281C1D26D62600103E75 /* StockInfoCell.swift in Sources */,
 				048B27FF1D25AFE000103E75 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
