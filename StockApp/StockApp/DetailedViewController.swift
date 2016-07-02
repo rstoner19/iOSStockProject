@@ -10,6 +10,7 @@ import UIKit
 
 class DetailedViewController: UIViewController, Setup {
     
+    @IBOutlet weak var symbolLabel: UILabel!
     
     var quote: Quote?
 
@@ -29,6 +30,7 @@ class DetailedViewController: UIViewController, Setup {
     func setup() {
         if let quote = self.quote {
             self.title = quote.company
+            self.symbolLabel.text = quote.symbol
         }
         
     }
