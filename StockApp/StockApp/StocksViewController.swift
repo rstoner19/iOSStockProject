@@ -34,6 +34,8 @@ class StocksViewController: UIViewController, UITableViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    
     func setupTableView() {
         self.tableView.rowHeight = 50
         self.tableView.registerNib(UINib(nibName: "StockInfoCell", bundle: nil), forCellReuseIdentifier: "stockInfoCell")
@@ -46,12 +48,27 @@ class StocksViewController: UIViewController, UITableViewDelegate {
 
 extension StocksViewController: UITableViewDataSource, Setup
 {
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == DetailedViewController.id() {
+            guard let detailedViewController = segue.destinationViewController as? DetailedViewController else { return }
+            guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
+            detailedViewController.quote = self.datasource[indexPath.row]
+        }
+    }
+    
+    
     func setup() {
         API.shared.GET { (quotes) in
             if let quotes = quotes {
                 self.datasource = quotes
+                
             }
         }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier(DetailedViewController.id(), sender: nil)
     }
     
     func  setupAppearance() {
