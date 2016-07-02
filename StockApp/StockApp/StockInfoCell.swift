@@ -30,7 +30,13 @@ class StockInfoCell: UITableViewCell, Setup {
             if let price = quote.lastPrice {
                 self.priceLabel.text = "$\(price)"
             }
-            verify(self.dollarChangeLabel, data: quote.dollarChange)
+            if let change = quote.dollarChange {
+                if change > 0 {
+                    self.dollarChangeLabel.text = "+\(change)"
+                } else {
+                    self.dollarChangeLabel.text = String(change)
+                }
+            }
             self.percentChangeLabel.text = String(format: "%.2f", quote.percentChangeDouble! * 100) + "%"
         }
     }

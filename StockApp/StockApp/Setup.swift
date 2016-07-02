@@ -14,7 +14,7 @@ protocol Setup {
 }
 
 extension Setup {
-    static var id: String {
+    static func id() -> String {
         return String(self)
     }
 }
