@@ -54,6 +54,7 @@ class API {
         task.resume()
     }
     
+    
     private func returnOnMain(quotes: [Quote]?, completion: (quotes: [Quote]?) -> ()) {
         dispatch_async(dispatch_get_main_queue()) { 
             completion(quotes: quotes)

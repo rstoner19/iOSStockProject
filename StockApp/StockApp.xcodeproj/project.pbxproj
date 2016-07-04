@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		047DE7FB1D29DE850032BB81 /* Portfolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047DE7FA1D29DE850032BB81 /* Portfolio.swift */; };
 		048B27FF1D25AFE000103E75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B27FE1D25AFE000103E75 /* AppDelegate.swift */; };
 		048B28011D25AFE000103E75 /* StocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B28001D25AFE000103E75 /* StocksViewController.swift */; };
 		048B28041D25AFE000103E75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048B28021D25AFE000103E75 /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		047DE7FA1D29DE850032BB81 /* Portfolio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Portfolio.swift; sourceTree = "<group>"; };
 		048B27FB1D25AFE000103E75 /* StockApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		048B27FE1D25AFE000103E75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		048B28001D25AFE000103E75 /* StocksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 		048B28181D25D28400103E75 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				047DE7FA1D29DE850032BB81 /* Portfolio.swift */,
 				048B281D1D26D7A900103E75 /* Setup.swift */,
 				048B28161D25D28000103E75 /* Quote.swift */,
 			);
@@ -200,6 +203,7 @@
 				048B28171D25D28100103E75 /* Quote.swift in Sources */,
 				048B281E1D26D7A900103E75 /* Setup.swift in Sources */,
 				048B28221D2724E900103E75 /* DetailedViewController.swift in Sources */,
+				047DE7FB1D29DE850032BB81 /* Portfolio.swift in Sources */,
 				048B28141D25B08C00103E75 /* StockAPI.swift in Sources */,
 				048B28011D25AFE000103E75 /* StocksViewController.swift in Sources */,
 				048B281C1D26D62600103E75 /* StockInfoCell.swift in Sources */,
@@ -356,6 +360,7 @@
 				048B280F1D25AFE000103E75 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

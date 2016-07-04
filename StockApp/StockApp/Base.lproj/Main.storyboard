@@ -9,7 +9,7 @@
         <!--Portfolio View Controller-->
         <scene sceneID="1Du-q2-vaf">
             <objects>
-                <viewController id="ZLJ-IB-ezI" userLabel="Portfolio View Controller" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PortfolioViewController" id="ZLJ-IB-ezI" userLabel="Portfolio View Controller" customClass="PortfolioViewController" customModule="StockApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ReL-gr-z7D"/>
                         <viewControllerLayoutGuide type="bottom" id="05Y-aS-ox7"/>
@@ -17,12 +17,42 @@
                     <view key="view" contentMode="scaleToFill" id="nhP-BC-4RX">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gx2-Az-rHA">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Portfolio" id="lCl-bK-OUF">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="JN2-1r-0gY">
+                                            <connections>
+                                                <action selector="doneButtonSelected:" destination="ZLJ-IB-ezI" id="wTL-rO-e7N"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <searchBar contentMode="redraw" text="" placeholder="Enter Symbol" translatesAutoresizingMaskIntoConstraints="NO" id="VTj-07-adG">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <color key="barTintColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VTj-07-adG" firstAttribute="leading" secondItem="nhP-BC-4RX" secondAttribute="leading" id="Dr9-8v-XXu"/>
+                            <constraint firstAttribute="trailing" secondItem="VTj-07-adG" secondAttribute="trailing" id="EBv-hd-901"/>
+                            <constraint firstAttribute="trailing" secondItem="gx2-Az-rHA" secondAttribute="trailing" id="N2w-bG-gZd"/>
+                            <constraint firstItem="VTj-07-adG" firstAttribute="top" secondItem="gx2-Az-rHA" secondAttribute="bottom" id="R1o-0B-rcy"/>
+                            <constraint firstItem="gx2-Az-rHA" firstAttribute="leading" secondItem="nhP-BC-4RX" secondAttribute="leading" id="aUe-wR-crD"/>
+                            <constraint firstItem="gx2-Az-rHA" firstAttribute="top" secondItem="ReL-gr-z7D" secondAttribute="bottom" id="kf5-Jy-hvP"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="symbolInputSelected" destination="VTj-07-adG" id="OE1-rZ-DFD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4v3-oT-8db" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1056" y="209"/>
+            <point key="canvasLocation" x="1056" y="213"/>
         </scene>
         <!--Stocks View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -72,7 +102,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="w8x-eg-avA">
-                        <barButtonItem key="leftBarButtonItem" title="Edit Portfolio" id="JVQ-w1-3hY"/>
+                        <barButtonItem key="rightBarButtonItem" title="Edit Portfolio" id="JVQ-w1-3hY">
+                            <connections>
+                                <segue destination="ZLJ-IB-ezI" kind="showDetail" id="bKZ-BV-Mu8"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="hUF-y2-8Wt" id="sC1-MC-CFY"/>
@@ -94,8 +128,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="AAPL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ts0-uf-1j9">
-                                <rect key="frame" x="20" y="72" width="200" height="66"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AAPL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ts0-uf-1j9">
+                                <rect key="frame" x="20" y="72" width="200" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="dut-Ua-ei9"/>
                                     <constraint firstAttribute="width" constant="200" id="hJq-VI-qwU"/>
