@@ -12,6 +12,12 @@ class StocksViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
+    var datasource = [Quote]() {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -21,12 +27,6 @@ class StocksViewController: UIViewController, UITableViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         setup()
-    }
-    
-    var datasource = [Quote]() {
-        didSet {
-            self.tableView.reloadData()
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,7 +46,7 @@ class StocksViewController: UIViewController, UITableViewDelegate {
 
 }
 
-extension StocksViewController: UITableViewDataSource, Setup
+extension StocksViewController: UITableViewDataSource, Setup, SortBy
 {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -60,9 +60,10 @@ extension StocksViewController: UITableViewDataSource, Setup
     
     func setup() {
         API.shared.GET { (quotes) in
-            if let quotes = quotes {
-                self.datasource = quotes
-                
+            if let quote = quotes {
+                // WHERE YOU CAN SORT ITEMS
+//                self.percentChange(&quote)
+                self.datasource = quote
             }
         }
     }
@@ -84,6 +85,7 @@ extension StocksViewController: UITableViewDataSource, Setup
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("stockInfoCell", forIndexPath: indexPath) as! StockInfoCell
         let quote = self.datasource[indexPath.row]
+        
         cell.quote = quote
         
         if quote.percentChangeDouble > 0 {
