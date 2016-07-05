@@ -30,18 +30,21 @@ class PortfolioViewController: UIViewController, UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         if let symbol = searchBar.text {
-            portfolio.insert(symbol)
+            Store.shared.add(symbol)
+            Store.shared.save(Store.ArchiveURL.path!)
+            print(Store.shared.allSymbols().sort())
+            
         }
         // Confirmation animation
         let textFieldInsideSearchBar = symbolInputSelected.valueForKey("searchField") as? UITextField
         searchBar.text = "Symbol Added"
-        UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
+        UIView.animateWithDuration(0.6, delay: 0.0, options: .CurveEaseOut, animations: {
             textFieldInsideSearchBar?.backgroundColor = UIColor(colorLiteralRed: 0.0, green: 1.0, blue: 0.0, alpha: 0.5)
             }) { (_) in
                 searchBar.text = nil
+                textFieldInsideSearchBar?.backgroundColor = UIColor.whiteColor()
+                
         }
-        
-        
     }
     
     
