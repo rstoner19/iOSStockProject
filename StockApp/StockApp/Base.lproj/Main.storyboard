@@ -35,19 +35,51 @@
                                 <color key="barTintColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nai-v7-wc9">
+                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="stockListCell" textLabel="GYs-O8-ea0" style="IBUITableViewCellStyleDefault" id="jNg-WN-Vwf">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jNg-WN-Vwf" id="AgG-Bc-aSI">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GYs-O8-ea0">
+                                                    <rect key="frame" x="15" y="0.0" width="570" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="ZLJ-IB-ezI" id="FKQ-bJ-461"/>
+                                    <outlet property="delegate" destination="ZLJ-IB-ezI" id="BLP-mT-lcy"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="VTj-07-adG" firstAttribute="leading" secondItem="nhP-BC-4RX" secondAttribute="leading" id="Dr9-8v-XXu"/>
                             <constraint firstAttribute="trailing" secondItem="VTj-07-adG" secondAttribute="trailing" id="EBv-hd-901"/>
                             <constraint firstAttribute="trailing" secondItem="gx2-Az-rHA" secondAttribute="trailing" id="N2w-bG-gZd"/>
+                            <constraint firstItem="Nai-v7-wc9" firstAttribute="top" secondItem="VTj-07-adG" secondAttribute="bottom" id="Oee-3k-dpq"/>
                             <constraint firstItem="VTj-07-adG" firstAttribute="top" secondItem="gx2-Az-rHA" secondAttribute="bottom" id="R1o-0B-rcy"/>
+                            <constraint firstItem="Nai-v7-wc9" firstAttribute="leading" secondItem="nhP-BC-4RX" secondAttribute="leading" id="XKg-JF-oRM"/>
                             <constraint firstItem="gx2-Az-rHA" firstAttribute="leading" secondItem="nhP-BC-4RX" secondAttribute="leading" id="aUe-wR-crD"/>
                             <constraint firstItem="gx2-Az-rHA" firstAttribute="top" secondItem="ReL-gr-z7D" secondAttribute="bottom" id="kf5-Jy-hvP"/>
+                            <constraint firstItem="05Y-aS-ox7" firstAttribute="top" secondItem="Nai-v7-wc9" secondAttribute="bottom" id="lyg-en-MGQ"/>
+                            <constraint firstAttribute="trailing" secondItem="Nai-v7-wc9" secondAttribute="trailing" id="sUh-sB-6Lw"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="symbolInputSelected" destination="VTj-07-adG" id="OE1-rZ-DFD"/>
+                        <outlet property="tableView" destination="Nai-v7-wc9" id="tDD-eM-ETw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4v3-oT-8db" userLabel="First Responder" sceneMemberID="firstResponder"/>

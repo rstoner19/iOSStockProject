@@ -18,6 +18,7 @@ protocol StoreProtocol: class {
     func remove(object: String)
     func save(file: String)
     func allSymbols() -> Set<String>
+    func symbolCount() -> Int
     
 }
 
@@ -37,6 +38,10 @@ extension StoreProtocol {
     
     func allSymbols() -> Set<String> {
         return self.symbols
+    }
+    
+    func symbolCount() -> Int {
+        return self.symbols.count
     }
 
     

@@ -21,7 +21,6 @@ class API {
     private func symbolsForURL(symbols: Set<String>) -> String {
         let sortedSymbols = symbols.sort()
         var URLString = String()
-        print(sortedSymbols[0])
         for count in 0..<sortedSymbols.count - 1 {
             URLString += "%22\(sortedSymbols[count])%22%2C"
         }
@@ -36,7 +35,6 @@ class API {
         }
         let symbolURL = self.symbolsForURL(symbols)
         let baseURL = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(" + symbolURL + ")%0A%09%09&env=http%3A%2F%2Fdatatables.org%2Falltables.env&format=json"
-        print(baseURL)
         return NSURL(string: baseURL)!
     }
     
