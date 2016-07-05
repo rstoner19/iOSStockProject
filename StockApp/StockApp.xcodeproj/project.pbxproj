@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		047DE7FD1D2A41590032BB81 /* Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047DE7FC1D2A41590032BB81 /* Additions.swift */; };
+		047DE7FF1D2A49E00032BB81 /* StoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047DE7FE1D2A49E00032BB81 /* StoreProtocol.swift */; };
+		047DE8021D2A4E510032BB81 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047DE8011D2A4E510032BB81 /* Store.swift */; };
 		048B27FF1D25AFE000103E75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B27FE1D25AFE000103E75 /* AppDelegate.swift */; };
 		048B28011D25AFE000103E75 /* StocksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B28001D25AFE000103E75 /* StocksViewController.swift */; };
 		048B28041D25AFE000103E75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 048B28021D25AFE000103E75 /* Main.storyboard */; };
@@ -22,6 +25,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		047DE7FC1D2A41590032BB81 /* Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Additions.swift; sourceTree = "<group>"; };
+		047DE7FE1D2A49E00032BB81 /* StoreProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProtocol.swift; sourceTree = "<group>"; };
+		047DE8011D2A4E510032BB81 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Store.swift; path = ../Store.swift; sourceTree = "<group>"; };
 		048B27FB1D25AFE000103E75 /* StockApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		048B27FE1D25AFE000103E75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		048B28001D25AFE000103E75 /* StocksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksViewController.swift; sourceTree = "<group>"; };
@@ -30,7 +36,7 @@
 		048B28081D25AFE000103E75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		048B280A1D25AFE000103E75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		048B28131D25B08C00103E75 /* StockAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockAPI.swift; sourceTree = "<group>"; };
-		048B28161D25D28000103E75 /* Quote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
+		048B28161D25D28000103E75 /* Quote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Quote.swift; path = StockApp/Quote.swift; sourceTree = "<group>"; };
 		048B28191D26D35200103E75 /* StockInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StockInfoCell.xib; sourceTree = "<group>"; };
 		048B281B1D26D62600103E75 /* StockInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockInfoCell.swift; sourceTree = "<group>"; };
 		048B281D1D26D7A900103E75 /* Setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setup.swift; sourceTree = "<group>"; };
@@ -49,6 +55,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		047DE8001D2A49FB0032BB81 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				047DE7FE1D2A49E00032BB81 /* StoreProtocol.swift */,
+				048B28161D25D28000103E75 /* Quote.swift */,
+			);
+			name = Protocol;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		048B27F21D25AFE000103E75 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				048B27FE1D25AFE000103E75 /* AppDelegate.swift */,
+				047DE7FC1D2A41590032BB81 /* Additions.swift */,
 				048B280A1D25AFE000103E75 /* Info.plist */,
 			);
 			name = "App Global";
@@ -119,8 +136,9 @@
 		048B28181D25D28400103E75 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				047DE8001D2A49FB0032BB81 /* Protocol */,
 				048B281D1D26D7A900103E75 /* Setup.swift */,
-				048B28161D25D28000103E75 /* Quote.swift */,
+				047DE8011D2A4E510032BB81 /* Store.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -198,9 +216,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				048B28171D25D28100103E75 /* Quote.swift in Sources */,
+				047DE7FF1D2A49E00032BB81 /* StoreProtocol.swift in Sources */,
+				047DE7FD1D2A41590032BB81 /* Additions.swift in Sources */,
 				048B281E1D26D7A900103E75 /* Setup.swift in Sources */,
 				048B28221D2724E900103E75 /* DetailedViewController.swift in Sources */,
 				048B28141D25B08C00103E75 /* StockAPI.swift in Sources */,
+				047DE8021D2A4E510032BB81 /* Store.swift in Sources */,
 				048B28011D25AFE000103E75 /* StocksViewController.swift in Sources */,
 				048B281C1D26D62600103E75 /* StockInfoCell.swift in Sources */,
 				048B28201D27143700103E75 /* PortfolioViewController.swift in Sources */,
@@ -356,6 +377,7 @@
 				048B280F1D25AFE000103E75 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
