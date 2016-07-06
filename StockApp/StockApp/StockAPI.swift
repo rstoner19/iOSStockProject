@@ -22,9 +22,15 @@ class API {
         let sortedSymbols = symbols.sort()
         var URLString = String()
         for count in 0..<sortedSymbols.count - 1 {
-            URLString += "%22\(sortedSymbols[count])%22%2C"
+            let escapedSymbol = sortedSymbols[count].stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+            if let escapedSymbol = escapedSymbol {
+                URLString += "%22\(escapedSymbol)%22%2C"
+            }
         }
-        URLString += "%22\(sortedSymbols.last!)%22"
+        let escapedSymbol = sortedSymbols.last!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+        if let escapedSymbol = escapedSymbol {
+            URLString += "%22\(escapedSymbol)%22"
+        }
         return URLString
     }
     
@@ -46,14 +52,24 @@ class API {
             if let data = data {
                 do {
                     if let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? [String : AnyObject] {
-                        if let query = json["query"] as? [String : AnyObject], results = query["results"] as? [String : AnyObject], let quote = results["quote"] as? [AnyObject] {
-                            var quotes = [Quote]()
-                            for quoteJSON in quote {
-                                if let quote = Quote(json: quoteJSON) {
+                        if symbolList.count > 1 {
+                            if let query = json["query"] as? [String : AnyObject], results = query["results"] as? [String : AnyObject], let quote = results["quote"] as? [AnyObject] {
+                                var quotes = [Quote]()
+                                for quoteJSON in quote {
+                                    if let quote = Quote(json: quoteJSON) {
+                                        quotes.append(quote)
+                                    }
+                                }
+                                self.returnOnMain(quotes, completion: completion)
+                            }
+                        } else {
+                            if let query = json["query"] as? [String : AnyObject], results = query["results"] as? [String : AnyObject ], quote = results["quote"] {
+                                var quotes = [Quote]()
+                                if let quote = Quote(json: quote) {
                                     quotes.append(quote)
                                 }
+                                self.returnOnMain(quotes, completion: completion)
                             }
-                            self.returnOnMain(quotes, completion: completion)
                         }
                     }
                 } catch {

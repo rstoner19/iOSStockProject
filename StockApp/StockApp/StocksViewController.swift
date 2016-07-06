@@ -60,11 +60,11 @@ extension StocksViewController: UITableViewDataSource, Setup, SortBy
     
     func setup() {
         if Store.shared.allSymbols().isEmpty {
-            Store.shared.add("AAPL")
-            Store.shared.add("GOOG")
-            Store.shared.add("MSFT")
+            Store.shared.add("^IXIC")
+            Store.shared.add("^GSPC")
         }
         let portfolio = Store.shared.allSymbols()
+        
         API.shared.GET(portfolio) { (quotes) in
             if let quote = quotes {
                 self.datasource = quote

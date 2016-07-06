@@ -166,7 +166,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AAPL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ts0-uf-1j9">
-                                <rect key="frame" x="20" y="72" width="200" height="50"/>
+                                <rect key="frame" x="20" y="79" width="200" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="dut-Ua-ei9"/>
                                     <constraint firstAttribute="width" constant="200" id="hJq-VI-qwU"/>
@@ -181,7 +181,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ts0-uf-1j9" firstAttribute="leading" secondItem="jDS-ZI-MJY" secondAttribute="leadingMargin" id="clQ-2e-KF5"/>
-                            <constraint firstItem="ts0-uf-1j9" firstAttribute="top" secondItem="Yae-f2-o53" secondAttribute="bottom" constant="8" id="jVk-U8-Bb7"/>
+                            <constraint firstItem="ts0-uf-1j9" firstAttribute="top" secondItem="Yae-f2-o53" secondAttribute="bottom" constant="15" id="jVk-U8-Bb7"/>
                         </constraints>
                     </view>
                     <connections>
