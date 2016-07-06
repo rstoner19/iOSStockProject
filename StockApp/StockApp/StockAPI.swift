@@ -29,13 +29,7 @@ class API {
     }
     
     private func configureURL(symbols: Set<String> = Set<String>()) -> NSURL {
-        let portfolio: Set<String>
-        if symbols.isEmpty{
-            portfolio = ["^GSPC", "^IXIC"]
-        } else {
-            portfolio = symbols
-        }
-        let symbolURL = self.symbolsForURL(portfolio)
+        let symbolURL = self.symbolsForURL(symbols)
         let baseURL = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(" + symbolURL + ")%0A%09%09&env=http%3A%2F%2Fdatatables.org%2Falltables.env&format=json"
         return NSURL(string: baseURL)!
     }
@@ -43,7 +37,6 @@ class API {
     func GET(symbolList: Set<String> = Set<String>(), completion: (quotes: [Quote]?) -> ()) {
         
         let url = self.configureURL(symbolList)
-        print(url)
         let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: url)
         let task = self.session.dataTaskWithRequest(urlRequest) { (data, response, error) in
             if let error = error {

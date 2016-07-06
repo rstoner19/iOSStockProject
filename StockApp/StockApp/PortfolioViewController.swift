@@ -72,7 +72,7 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
         func confirmationSymbolAdded() {
             let textFieldInsideSearchBar = symbolInputSelected.valueForKey("searchField") as? UITextField
             searchBar.text = "Symbol Added"
-            UIView.animateWithDuration(0.75, delay: 0.0, options: .CurveEaseOut, animations: {
+            UIView.animateWithDuration(0.5, delay: 0.0, options: .CurveEaseOut, animations: {
                 textFieldInsideSearchBar?.backgroundColor = UIColor(colorLiteralRed: 0.0, green: 1.0, blue: 0.0, alpha: 0.5)
             }) { (_) in
                 searchBar.text = nil

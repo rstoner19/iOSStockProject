@@ -50,7 +50,7 @@
                                                     <rect key="frame" x="15" y="0.0" width="570" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -134,7 +134,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="w8x-eg-avA">
-                        <barButtonItem key="rightBarButtonItem" title="Edit Portfolio" id="JVQ-w1-3hY">
+                        <barButtonItem key="leftBarButtonItem" title="Sort" id="jqu-AQ-Yia">
+                            <connections>
+                                <action selector="sortButtonSelected:" destination="BYZ-38-t0r" id="Yca-55-g8L"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="JVQ-w1-3hY">
                             <connections>
                                 <segue destination="ZLJ-IB-ezI" kind="showDetail" id="bKZ-BV-Mu8"/>
                             </connections>

@@ -59,12 +59,15 @@ extension StocksViewController: UITableViewDataSource, Setup, SortBy
     
     
     func setup() {
+        if Store.shared.allSymbols().isEmpty {
+            Store.shared.add("AAPL")
+            Store.shared.add("GOOG")
+            Store.shared.add("MSFT")
+        }
         let portfolio = Store.shared.allSymbols()
         API.shared.GET(portfolio) { (quotes) in
             if let quote = quotes {
-                // WHERE YOU CAN SORT ITEMS
-                let test  = self.percentChange(quote)
-                self.datasource = test
+                self.datasource = quote
             }
         }
     }
@@ -100,6 +103,61 @@ extension StocksViewController: UITableViewDataSource, Setup, SortBy
         }
         
         return cell
+    }
+    
+    func presentSortActions(portfolio: Set<String>) {
+        
+        let actionSheet = UIAlertController(title: "Sort By", message: "Please select how to sort the stocks by.", preferredStyle: .ActionSheet)
+        let alphabeticalAction = UIAlertAction(title: "Default (Alphabetical", style: .Default) { (action) in
+            API.shared.GET(portfolio) { (quotes) in
+                if let quote = quotes {
+                    self.datasource = quote
+                }
+            }
+        }
+        let percentChangeAction = UIAlertAction(title: "Percent Change", style: .Default) { (action) in
+            API.shared.GET(portfolio) { (quotes) in
+                if let quote = quotes {
+                    self.datasource = self.percentChange(quote)
+                }
+            }
+        }
+        let biggestMoverAction = UIAlertAction(title: "Biggest Mover", style: .Default) { (action) in
+            API.shared.GET(portfolio) { (quotes) in
+                if let quote = quotes {
+                    self.datasource = self.biggestMovers(quote)
+                }
+            }
+        }
+        let dividendYieldAction = UIAlertAction(title: "Dividend Yield", style: .Default) { (action) in
+            API.shared.GET(portfolio) { (quotes) in
+                if let quote = quotes {
+                    self.datasource = self.dividendYield(quote)
+                }
+            }
+        }
+        let peRatioAction = UIAlertAction(title: "P/E Ratio", style: .Default) { (action) in
+            API.shared.GET(portfolio) { (quotes) in
+                if let quote = quotes {
+                    self.datasource = self.peRatio(quote)
+                }
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        
+        actionSheet.addAction(alphabeticalAction)
+        actionSheet.addAction(percentChangeAction)
+        actionSheet.addAction(biggestMoverAction)
+        actionSheet.addAction(dividendYieldAction)
+        actionSheet.addAction(peRatioAction)
+        actionSheet.addAction(cancelAction)
+        
+        self.presentViewController(actionSheet, animated: true, completion: nil)
+    }
+    
+    @IBAction func sortButtonSelected(sender: AnyObject) {
+        let portfolio = Store.shared.allSymbols()
+        presentSortActions(portfolio)
     }
 }
 

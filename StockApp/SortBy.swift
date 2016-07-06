@@ -10,14 +10,28 @@ import Foundation
 
 protocol SortBy: class {
     
-//    func sortBy(port)
 }
 
 extension SortBy {
+    
     func percentChange(portfolio: [Quote]) -> [Quote] {
         let sorted = portfolio.sort({$0.percentChangeDouble > $1.percentChangeDouble})
-        
         return sorted
     }
     
+    func biggestMovers(portfolio: [Quote]) -> [Quote] {
+        let sorted = portfolio.sort({abs($0.percentChangeDouble!) > abs($1.percentChangeDouble!)})
+        return sorted
+    }
+    
+    func dividendYield(portfolio: [Quote]) -> [Quote] {
+        let sorted = portfolio.sort({$0.dividendYield > $1.dividendYield})
+        return sorted
+    }
+    
+    func peRatio(portfolio: [Quote]) -> [Quote] {
+        let sorted = portfolio.sort({$0.peRatioDouble < $1.peRatioDouble})
+        return sorted
+    }
+  
 }
