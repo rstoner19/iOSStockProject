@@ -60,6 +60,7 @@ class DetailedViewController: UIViewController, Setup {
             
             //Price Section
             self.priceLabel.text = "Cur. Price: \(quote.lastPrice)"
+            self.
             
         }
         
