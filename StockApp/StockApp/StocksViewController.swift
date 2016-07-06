@@ -59,11 +59,12 @@ extension StocksViewController: UITableViewDataSource, Setup, SortBy
     
     
     func setup() {
-        API.shared.GET { (quotes) in
+        let portfolio = Store.shared.allSymbols()
+        API.shared.GET(portfolio) { (quotes) in
             if let quote = quotes {
                 // WHERE YOU CAN SORT ITEMS
-//                self.percentChange(&quote)
-                self.datasource = quote
+                let test  = self.percentChange(quote)
+                self.datasource = test
             }
         }
     }

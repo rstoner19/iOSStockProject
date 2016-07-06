@@ -33,7 +33,7 @@
                             <searchBar contentMode="redraw" text="" placeholder="Enter Symbol" translatesAutoresizingMaskIntoConstraints="NO" id="VTj-07-adG">
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <color key="barTintColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nai-v7-wc9">
                                 <rect key="frame" x="0.0" y="108" width="600" height="492"/>
@@ -58,8 +58,8 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="ZLJ-IB-ezI" id="FKQ-bJ-461"/>
-                                    <outlet property="delegate" destination="ZLJ-IB-ezI" id="BLP-mT-lcy"/>
+                                    <outlet property="dataSource" destination="ZLJ-IB-ezI" id="lqe-jL-CkN"/>
+                                    <outlet property="delegate" destination="ZLJ-IB-ezI" id="41f-dv-9dV"/>
                                 </connections>
                             </tableView>
                         </subviews>

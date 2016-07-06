@@ -38,14 +38,12 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
     func configureCell(indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("stockListCell", forIndexPath: indexPath)
         let symbol = Store.shared.allSymbols().sort()[indexPath.row]
-        print(symbol)
         cell.textLabel?.text = symbol
         return cell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        print(Store.shared.symbolCount())
         return Store.shared.symbolCount()
     }
     
@@ -62,6 +60,7 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
             
             let symbol = Store.shared.allSymbols().sort()[indexPath.row]
             Store.shared.remove(symbol)
+            Store.shared.save(Store.ArchiveURL.path!)
             
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
         }
@@ -69,22 +68,45 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
     
     //** Search Bar **//
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        if let symbol = searchBar.text {
-            Store.shared.add(symbol)
-            Store.shared.save(Store.ArchiveURL.path!)
-            
-        }
-        // Confirmation animation
-        let textFieldInsideSearchBar = symbolInputSelected.valueForKey("searchField") as? UITextField
-        searchBar.text = "Symbol Added"
-        UIView.animateWithDuration(0.75, delay: 0.0, options: .CurveEaseOut, animations: {
-            textFieldInsideSearchBar?.backgroundColor = UIColor(colorLiteralRed: 0.0, green: 1.0, blue: 0.0, alpha: 0.5)
+        
+        func confirmationSymbolAdded() {
+            let textFieldInsideSearchBar = symbolInputSelected.valueForKey("searchField") as? UITextField
+            searchBar.text = "Symbol Added"
+            UIView.animateWithDuration(0.75, delay: 0.0, options: .CurveEaseOut, animations: {
+                textFieldInsideSearchBar?.backgroundColor = UIColor(colorLiteralRed: 0.0, green: 1.0, blue: 0.0, alpha: 0.5)
             }) { (_) in
                 searchBar.text = nil
                 textFieldInsideSearchBar?.backgroundColor = UIColor.whiteColor()
                 
+            }
         }
-        self.tableView.reloadData()
+        
+        func checkSymbol() {
+            let textFieldInsideSearchBar = symbolInputSelected.valueForKey("searchField") as? UITextField
+            searchBar.text = "Symbol Not Recognized, Please Try Again"
+            UIView.animateWithDuration(1.0, delay: 0.0, options: .CurveEaseOut, animations: {
+                textFieldInsideSearchBar?.backgroundColor = UIColor(colorLiteralRed: 1.0, green: 0.0, blue: 0.0, alpha: 0.5)
+            }) { (_) in
+                searchBar.text = nil
+                textFieldInsideSearchBar?.backgroundColor = UIColor.whiteColor()
+                
+            }
+        }
+        
+        if let symbol = searchBar.text {
+            
+            let test: Set<String> = [symbol, "ZZZZ"]
+            API.shared.GET(test, completion: { (quotes) in
+                if let quotes = quotes {
+                    if quotes.count > 0 && !quotes[0].company.isEmpty {
+                        confirmationSymbolAdded()
+                        Store.shared.add(symbol)
+                        Store.shared.save(Store.ArchiveURL.path!)
+                        self.tableView.reloadData()
+                    } else { checkSymbol() }
+                } else { checkSymbol() }
+            })
+        }
     }
     
     @IBAction func doneButtonSelected(sender: AnyObject) {
