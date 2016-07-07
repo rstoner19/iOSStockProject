@@ -17,7 +17,7 @@ class Quote {
     let dollarChange: Double?
     let percentChangeString: String
     let percentChangeDouble: Double?
-    let peRatioString: String?
+    let peRatioString: String
     let daysHigh: String
     let daysLow: String
     let daysRange: String
@@ -26,7 +26,16 @@ class Quote {
     let yearRange: String
     let bid: String
     let askPrice: String
-    
+    let earningsPerShare: String
+    let pEGRatio: String
+    let eBITDA: String
+    let bookValue: String
+    let priceSales: String
+    let curYrEPSEst: String
+    let nextQtrEPSEst: String
+    let nextYrEPSEst: String
+    let dividend: String
+    let dividendPayDate: String
     
     let peRatioDouble: Double
     let dividendYield: Double
@@ -43,7 +52,16 @@ class Quote {
             let yearRange = json["YearRange"] as? String
             let bid = json["Bid"] as? String
             let askPrice = json["Ask"] as? String
-
+            let ePS = json["EarningsShare"] as? String
+            let pEGratio = json["PEGRatio"] as? String
+            let ebitda = json["EBITDA"] as? String
+            let bookValue = json["BookValue"] as? String
+            let priceSales = json["priceSales"] as? String
+            let curYrEPSEst = json["EPSEstimateCurrentYear"] as? String
+            let nextQtrEPSEst = json["EPSEstimateNextQuarter"] as? String
+            let nextYrEPSEst = json["EPSEstimateNextYear"] as? String
+            let dividend = json["DividendShare"] as? String
+            let dividendPayDate = json["DividendPayDate"] as? String
             
             self.company = company
             self.symbol = symbol
@@ -52,7 +70,7 @@ class Quote {
             self.dollarChange = round(Double(dollarChange)! * 100)/100
             self.percentChangeString = percentChange
             self.percentChangeDouble = Double(self.dollarChange! / self.lastPrice!)
-            self.peRatioString = peRatio
+            if let peRatio = peRatio {self.peRatioString = peRatio } else { self.peRatioString = " - "}
             
             if let peRatio = peRatio {self.peRatioDouble = Double(peRatio)!} else { self.peRatioDouble = 9999.9 }
             if let dividendYield = dividendYield {self.dividendYield = Double(dividendYield)!} else {self.dividendYield = 0.00 }
@@ -64,6 +82,17 @@ class Quote {
             if let yearRange = yearRange { self.yearRange = yearRange } else {self.yearRange = " - " }
             if let bid = bid { self.bid = bid } else {self.bid = " - " }
             if let ask = askPrice { self.askPrice = ask } else { self.askPrice = " - " }
+            if let ePS = ePS { self.earningsPerShare = ePS } else {self.earningsPerShare = " - "}
+            if let pEG = pEGratio { self.pEGRatio = pEG } else {self.pEGRatio = " - "}
+            if let ebitda = ebitda { self.eBITDA = ebitda } else { self.eBITDA = " - " }
+            if let bookValue = bookValue { self.bookValue = bookValue } else { self.bookValue = " - "}
+            if let priceSales = priceSales { self.priceSales = priceSales } else { self.priceSales = " - "}
+            if let curYrEPSEst = curYrEPSEst { self.curYrEPSEst = curYrEPSEst } else { self.curYrEPSEst = " - "}
+            if let nextQtrEPSEst = nextQtrEPSEst { self.nextQtrEPSEst = nextQtrEPSEst } else { self.nextQtrEPSEst = " - "}
+            if let nextYrEPSEst = nextYrEPSEst { self.nextYrEPSEst = nextYrEPSEst } else { self.nextYrEPSEst = " - "}
+            if let dividend = dividend { self.dividend = dividend } else { self.dividend = "0.00" }
+            if let dividendPayDate = dividendPayDate { self.dividendPayDate = dividendPayDate} else { self.dividendPayDate = " - "}
+            
             
         
         } else {
