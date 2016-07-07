@@ -13,6 +13,7 @@ class DetailedViewController: UIViewController, Setup {
     @IBOutlet weak var symbolLabel: UILabel!
     @IBOutlet weak var priceChangeLabel: UILabel!
     @IBOutlet weak var currentPriceLabel: UILabel!
+    @IBOutlet weak var directionImage: UIImageView!
     
     //Detailed Price Compenonents
     @IBOutlet weak var priceLabel: UILabel!
@@ -52,15 +53,24 @@ class DetailedViewController: UIViewController, Setup {
             
             if quote.dollarChange > 0 {
                 self.priceChangeLabel.textColor = UIColor(colorLiteralRed: 0.0, green: 1.0, blue: 0.0, alpha: 1.0)
-                // Image
+                self.directionImage.image = UIImage(named: "up.png")
             } else if quote.dollarChange < 0 {
                 self.priceChangeLabel.textColor = UIColor(colorLiteralRed: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
+                self.directionImage.image = UIImage(named: "down.png")
             }
             self.priceChangeLabel.text = "$\(quote.dollarChange!)"
             
             //Price Section
-            self.priceLabel.text = "Cur. Price: \(quote.lastPrice)"
-            self.
+            self.priceLabel.text = "Price"
+            self.priceCurrentLabel.text = "Current: $\(quote.lastPrice!)"
+            self.priceTimeLabel.text = "At: \(quote.lastTradeTime)"
+            self.priceBidAskLabel.text = "Bid/Ask: $\(quote.bid) / $\(quote.askPrice)"
+            self.priceDayHighLabel.text = "Day High: $\(quote.daysHigh)"
+            self.priceDayLowLabel.text = "Day Low: $\(quote.daysLow)"
+            self.priceDayRangeLabel.text = "Day Rng: \(quote.daysRange)"
+            self.priceYearLowLabel.text = "Year Low: $\(quote.yearLow)"
+            self.priceYearHighLabel.text = "Year High: $\(quote.yearHigh)"
+            self.priceYearRangeLabel.text = "Year Range: $\(quote.yearRange)"
             
         }
         

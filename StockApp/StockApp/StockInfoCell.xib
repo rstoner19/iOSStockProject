@@ -31,7 +31,7 @@
                             </fragment>
                         </attributedString>
                         <nil key="highlightedColor"/>
-                        <color key="shadowColor" red="0.6918979287147522" green="0.84908479452133179" blue="0.93336969614028931" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="shadowColor" red="0.43529411764705883" green="0.55294117647058827" blue="0.62352941176470589" alpha="1" colorSpace="calibratedRGB"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gql-oC-SLX">
                         <rect key="frame" x="8" y="72" width="46" height="12"/>
@@ -40,7 +40,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Wf-hu-6Ot">
-                        <rect key="frame" x="276" y="8" width="33" height="70"/>
+                        <rect key="frame" x="271" y="8" width="33" height="70"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="lfa-pt-VlE"/>
                         </constraints>
@@ -61,7 +61,7 @@
                         </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ru6-b2-hDz">
-                        <rect key="frame" x="319" y="8" width="50" height="70"/>
+                        <rect key="frame" x="314" y="8" width="50" height="70"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="ht8-xf-6i6"/>
                         </constraints>
@@ -77,9 +77,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AV6-Mx-UxD">
-                        <rect key="frame" x="374" y="8" width="50" height="70"/>
+                        <rect key="frame" x="369" y="8" width="55" height="70"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="50" id="9me-AN-JIb"/>
+                            <constraint firstAttribute="width" constant="55" id="9me-AN-JIb"/>
                         </constraints>
                         <attributedString key="attributedText">
                             <fragment content="Percent">
