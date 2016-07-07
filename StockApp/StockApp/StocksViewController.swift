@@ -11,6 +11,8 @@ import UIKit
 class StocksViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    var refreshControl = UIRefreshControl()
     
     var datasource = [Quote]() {
         didSet {
@@ -20,9 +22,9 @@ class StocksViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         setupAppearance()
         setupTableView()
+        refreshSetup()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -41,6 +43,22 @@ class StocksViewController: UIViewController, UITableViewDelegate {
         self.tableView.registerNib(UINib(nibName: "StockInfoCell", bundle: nil), forCellReuseIdentifier: "stockInfoCell")
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.addSubview(refreshControl)
+    }
+    
+    func refreshSetup(){
+        self.refreshControl.tintColor = UIColor.greenColor()
+        self.refreshControl.addTarget(self, action: #selector(StocksViewController.refresh), forControlEvents: .ValueChanged)
+    }
+    
+    func refresh() {
+        let portfolio = Store.shared.allSymbols()
+        API.shared.GET(portfolio) { (quotes) in
+            if let quote = quotes {
+                self.datasource = quote
+            }
+        }
+        self.refreshControl.endRefreshing()
     }
 
 
@@ -59,6 +77,7 @@ extension StocksViewController: UITableViewDataSource, Setup, SortBy
     
     
     func setup() {
+        activityIndicator.startAnimating()
         if Store.shared.allSymbols().isEmpty {
             Store.shared.add("^IXIC")
             Store.shared.add("^GSPC")
@@ -70,6 +89,8 @@ extension StocksViewController: UITableViewDataSource, Setup, SortBy
                 self.datasource = quote
             }
         }
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.stopAnimating()
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

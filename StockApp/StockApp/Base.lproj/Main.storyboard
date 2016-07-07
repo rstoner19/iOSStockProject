@@ -123,6 +123,14 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Twg-KG-o7w">
+                                <rect key="frame" x="285" y="253" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="YsQ-7w-lF4"/>
+                                    <constraint firstAttribute="width" constant="30" id="s6h-8H-jNS"/>
+                                </constraints>
+                                <color key="color" red="0.066592865060745021" green="1" blue="0.16169033672843336" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -130,6 +138,8 @@
                             <constraint firstItem="hUF-y2-8Wt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="csU-ja-tEI"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="hUF-y2-8Wt" secondAttribute="bottom" id="elb-DH-Qhx"/>
                             <constraint firstItem="hUF-y2-8Wt" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="keu-Rj-VFZ"/>
+                            <constraint firstItem="Twg-KG-o7w" firstAttribute="centerX" secondItem="hUF-y2-8Wt" secondAttribute="centerX" id="kua-bV-hIo"/>
+                            <constraint firstItem="Twg-KG-o7w" firstAttribute="centerY" secondItem="hUF-y2-8Wt" secondAttribute="centerY" constant="-32" id="mlT-nW-g4t"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="w8x-eg-avA">
@@ -145,6 +155,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="Twg-KG-o7w" id="jJD-4X-Sev"/>
                         <outlet property="tableView" destination="hUF-y2-8Wt" id="sC1-MC-CFY"/>
                     </connections>
                 </viewController>
