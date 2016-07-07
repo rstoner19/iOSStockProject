@@ -12,6 +12,12 @@ class StocksViewController: UIViewController, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
+    var datasource = [Quote]() {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -21,12 +27,6 @@ class StocksViewController: UIViewController, UITableViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         setup()
-    }
-    
-    var datasource = [Quote]() {
-        didSet {
-            self.tableView.reloadData()
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,7 +46,7 @@ class StocksViewController: UIViewController, UITableViewDelegate {
 
 }
 
-extension StocksViewController: UITableViewDataSource, Setup
+extension StocksViewController: UITableViewDataSource, Setup, SortBy
 {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -59,10 +59,15 @@ extension StocksViewController: UITableViewDataSource, Setup
     
     
     func setup() {
-        API.shared.GET { (quotes) in
-            if let quotes = quotes {
-                self.datasource = quotes
-                
+        if Store.shared.allSymbols().isEmpty {
+            Store.shared.add("^IXIC")
+            Store.shared.add("^GSPC")
+        }
+        let portfolio = Store.shared.allSymbols()
+        
+        API.shared.GET(portfolio) { (quotes) in
+            if let quote = quotes {
+                self.datasource = quote
             }
         }
     }
@@ -84,6 +89,7 @@ extension StocksViewController: UITableViewDataSource, Setup
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("stockInfoCell", forIndexPath: indexPath) as! StockInfoCell
         let quote = self.datasource[indexPath.row]
+        
         cell.quote = quote
         
         if quote.percentChangeDouble > 0 {
@@ -97,6 +103,61 @@ extension StocksViewController: UITableViewDataSource, Setup
         }
         
         return cell
+    }
+    
+    func presentSortActions(portfolio: Set<String>) {
+        
+        let actionSheet = UIAlertController(title: "Sort By", message: "Please select how to sort the stocks by.", preferredStyle: .ActionSheet)
+        let alphabeticalAction = UIAlertAction(title: "Default (Alphabetical", style: .Default) { (action) in
+            API.shared.GET(portfolio) { (quotes) in
+                if let quote = quotes {
+                    self.datasource = quote
+                }
+            }
+        }
+        let percentChangeAction = UIAlertAction(title: "Percent Change", style: .Default) { (action) in
+            API.shared.GET(portfolio) { (quotes) in
+                if let quote = quotes {
+                    self.datasource = self.percentChange(quote)
+                }
+            }
+        }
+        let biggestMoverAction = UIAlertAction(title: "Biggest Mover", style: .Default) { (action) in
+            API.shared.GET(portfolio) { (quotes) in
+                if let quote = quotes {
+                    self.datasource = self.biggestMovers(quote)
+                }
+            }
+        }
+        let dividendYieldAction = UIAlertAction(title: "Dividend Yield", style: .Default) { (action) in
+            API.shared.GET(portfolio) { (quotes) in
+                if let quote = quotes {
+                    self.datasource = self.dividendYield(quote)
+                }
+            }
+        }
+        let peRatioAction = UIAlertAction(title: "P/E Ratio", style: .Default) { (action) in
+            API.shared.GET(portfolio) { (quotes) in
+                if let quote = quotes {
+                    self.datasource = self.peRatio(quote)
+                }
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        
+        actionSheet.addAction(alphabeticalAction)
+        actionSheet.addAction(percentChangeAction)
+        actionSheet.addAction(biggestMoverAction)
+        actionSheet.addAction(dividendYieldAction)
+        actionSheet.addAction(peRatioAction)
+        actionSheet.addAction(cancelAction)
+        
+        self.presentViewController(actionSheet, animated: true, completion: nil)
+    }
+    
+    @IBAction func sortButtonSelected(sender: AnyObject) {
+        let portfolio = Store.shared.allSymbols()
+        presentSortActions(portfolio)
     }
 }
 
