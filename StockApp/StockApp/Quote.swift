@@ -56,7 +56,7 @@ class Quote {
             let pEGratio = json["PEGRatio"] as? String
             let ebitda = json["EBITDA"] as? String
             let bookValue = json["BookValue"] as? String
-            let priceSales = json["priceSales"] as? String
+            let priceSales = json["PriceSales"] as? String
             let curYrEPSEst = json["EPSEstimateCurrentYear"] as? String
             let nextQtrEPSEst = json["EPSEstimateNextQuarter"] as? String
             let nextYrEPSEst = json["EPSEstimateNextYear"] as? String
