@@ -10,6 +10,7 @@ import UIKit
 
 class StocksViewController: UIViewController, UITableViewDelegate {
 
+    @IBOutlet weak var upperView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var refreshControl = UIRefreshControl()
@@ -77,6 +78,8 @@ extension StocksViewController: UITableViewDataSource, Setup, SortBy
     
     
     func setup() {
+        self.upperView.layer.borderColor = UIColor.blackColor().CGColor
+        self.upperView.layer.borderWidth = 0.5
         activityIndicator.startAnimating()
         if Store.shared.allSymbols().isEmpty {
             Store.shared.add("^IXIC")
@@ -98,7 +101,7 @@ extension StocksViewController: UITableViewDataSource, Setup, SortBy
     }
     
     func  setupAppearance() {
-       self.title = "Portfolio"
+        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -135,6 +138,7 @@ extension StocksViewController: UITableViewDataSource, Setup, SortBy
                     self.datasource = quote
                 }
             }
+            self.title = "Alphabetical"
         }
         let percentChangeAction = UIAlertAction(title: "Percent Change", style: .Default) { (action) in
             API.shared.GET(portfolio) { (quotes) in
@@ -142,6 +146,7 @@ extension StocksViewController: UITableViewDataSource, Setup, SortBy
                     self.datasource = self.percentChange(quote)
                 }
             }
+            self.title = "Percent Change"
         }
         let biggestMoverAction = UIAlertAction(title: "Biggest Mover", style: .Default) { (action) in
             API.shared.GET(portfolio) { (quotes) in
@@ -149,6 +154,7 @@ extension StocksViewController: UITableViewDataSource, Setup, SortBy
                     self.datasource = self.biggestMovers(quote)
                 }
             }
+            self.title = "Biggest Movers"
         }
         let dividendYieldAction = UIAlertAction(title: "Dividend Yield", style: .Default) { (action) in
             API.shared.GET(portfolio) { (quotes) in
@@ -156,6 +162,7 @@ extension StocksViewController: UITableViewDataSource, Setup, SortBy
                     self.datasource = self.dividendYield(quote)
                 }
             }
+            self.title = "Dividend Yield"
         }
         let peRatioAction = UIAlertAction(title: "P/E Ratio", style: .Default) { (action) in
             API.shared.GET(portfolio) { (quotes) in
@@ -163,6 +170,7 @@ extension StocksViewController: UITableViewDataSource, Setup, SortBy
                     self.datasource = self.peRatio(quote)
                 }
             }
+            self.title = "P/E Ratio"
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         

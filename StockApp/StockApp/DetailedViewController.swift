@@ -84,7 +84,7 @@ class DetailedViewController: UIViewController, Setup {
             
             //Price Section
             self.priceLabel.text = "Price"
-            self.priceCurrentLabel.text = "Current: $\(quote.lastPrice!)"
+            self.priceCurrentLabel.text = "Mkt Cap: $\(quote.marketCap)"
             self.priceTimeLabel.text = "\(quote.lastTradeTime)"
             self.priceBidAskLabel.text = "Bid/Ask: $\(quote.bid) / $\(quote.askPrice)"
             self.priceDayHighLabel.text = "Day High: $\(quote.daysHigh)"
@@ -110,7 +110,7 @@ class DetailedViewController: UIViewController, Setup {
             self.dividendLabel.text = "Dividends"
             self.dividendAmountLabel.text = "Dividend: $\(quote.dividend)"
             self.dividendYield.text = "Yield: \(quote.dividendYield)%"
-            self.payDateLabel.text = "Paydate " + quote.dividendPayDate
+            self.payDateLabel.text = "Paydate: " + quote.dividendPayDate
         }
         
     }

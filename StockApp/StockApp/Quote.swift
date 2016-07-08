@@ -36,12 +36,13 @@ class Quote {
     let nextYrEPSEst: String
     let dividend: String
     let dividendPayDate: String
+    let marketCap: String
     
     let peRatioDouble: Double
     let dividendYield: Double
 
     init?(json: AnyObject) {
-        if let company = json["Name"] as? String, symbol = json["Symbol"] as? String, lastPrice = json["LastTradePriceOnly"] as? String, lastTradeTime = json["LastTradeTime"] as? String, dollarChange = json["Change"] as? String, percentChange = json["ChangeinPercent"] as? String {
+        if let company = json["Name"] as? String, symbol = json["Symbol"] as? String, lastPrice = json["LastTradePriceOnly"] as? String, lastTradeTime = json["LastTradeTime"] as? String, dollarChange = json["Change"] as? String, percentChange = json["ChangeinPercent"] as? String, marketCap = json["MarketCapitalization"] as? String {
             let peRatio = json["PERatio"] as? String
             let dividendYield = json["DividendYield"] as? String
             let dayHigh = json["DaysHigh"] as? String
@@ -70,6 +71,7 @@ class Quote {
             self.dollarChange = round(Double(dollarChange)! * 100)/100
             self.percentChangeString = percentChange
             self.percentChangeDouble = Double(self.dollarChange! / self.lastPrice!)
+            self.marketCap = marketCap
             if let peRatio = peRatio {self.peRatioString = peRatio } else { self.peRatioString = " - "}
             
             if let peRatio = peRatio {self.peRatioDouble = Double(peRatio)!} else { self.peRatioDouble = 9999.9 }

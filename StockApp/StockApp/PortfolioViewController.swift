@@ -69,10 +69,10 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
     //** Search Bar **//
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         
-        func confirmationSymbolAdded() {
+        func confirmationSymbolAdded(stockName: String) {
             let textFieldInsideSearchBar = symbolInputSelected.valueForKey("searchField") as? UITextField
-            searchBar.text = "Symbol Added"
-            UIView.animateWithDuration(0.4, delay: 0.0, options: .CurveEaseOut, animations: {
+            searchBar.text = stockName + " Added"
+            UIView.animateWithDuration(0.6, delay: 0.0, options: .CurveEaseOut, animations: {
                 textFieldInsideSearchBar?.backgroundColor = UIColor(colorLiteralRed: 0.0, green: 1.0, blue: 0.0, alpha: 0.5)
             }) { (_) in
                 searchBar.text = nil
@@ -98,7 +98,7 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
             API.shared.GET(verifySymbol, completion: { (quotes) in
                 if let quotes = quotes {
                     if quotes.count > 0 && !quotes[0].company.isEmpty {
-                        confirmationSymbolAdded()
+                        confirmationSymbolAdded(quotes[0].company)
                         Store.shared.add(symbol)
                         Store.shared.save(Store.ArchiveURL.path!)
                         self.tableView.reloadData()
