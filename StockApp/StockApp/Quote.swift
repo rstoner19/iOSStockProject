@@ -42,7 +42,7 @@ class Quote {
     let dividendYield: Double
 
     init?(json: AnyObject) {
-        if let company = json["Name"] as? String, symbol = json["Symbol"] as? String, lastPrice = json["LastTradePriceOnly"] as? String, lastTradeTime = json["LastTradeTime"] as? String, dollarChange = json["Change"] as? String, percentChange = json["ChangeinPercent"] as? String, marketCap = json["MarketCapitalization"] as? String {
+        if let company = json["Name"] as? String, symbol = json["Symbol"] as? String, lastPrice = json["LastTradePriceOnly"] as? String, lastTradeTime = json["LastTradeTime"] as? String, dollarChange = json["Change"] as? String, percentChange = json["ChangeinPercent"] as? String {
             let peRatio = json["PERatio"] as? String
             let dividendYield = json["DividendYield"] as? String
             let dayHigh = json["DaysHigh"] as? String
@@ -63,6 +63,7 @@ class Quote {
             let nextYrEPSEst = json["EPSEstimateNextYear"] as? String
             let dividend = json["DividendShare"] as? String
             let dividendPayDate = json["DividendPayDate"] as? String
+            let marketCap = json["MarketCapitalization"] as? String
             
             self.company = company
             self.symbol = symbol
@@ -71,7 +72,6 @@ class Quote {
             self.dollarChange = round(Double(dollarChange)! * 100)/100
             self.percentChangeString = percentChange
             self.percentChangeDouble = Double(self.dollarChange! / self.lastPrice!)
-            self.marketCap = marketCap
             if let peRatio = peRatio {self.peRatioString = peRatio } else { self.peRatioString = " - "}
             
             if let peRatio = peRatio {self.peRatioDouble = Double(peRatio)!} else { self.peRatioDouble = 9999.9 }
@@ -94,8 +94,7 @@ class Quote {
             if let nextYrEPSEst = nextYrEPSEst { self.nextYrEPSEst = nextYrEPSEst } else { self.nextYrEPSEst = " - "}
             if let dividend = dividend { self.dividend = dividend } else { self.dividend = "0.00" }
             if let dividendPayDate = dividendPayDate { self.dividendPayDate = dividendPayDate} else { self.dividendPayDate = " - "}
-            
-            
+            if let marketCap = marketCap { self.marketCap = marketCap } else {self.marketCap = " - " }
         
         } else {
             return nil
